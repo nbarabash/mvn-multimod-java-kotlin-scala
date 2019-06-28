@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.nbarabash</groupId>
+        <artifactId>mvn-multimod-java-kotlin-scala</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <groupId>com.nbarabash</groupId>
+    <artifactId>scala</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <scala.version>2.12.8</scala.version>
+        <main.basedir>${basedir}/..</main.basedir>
+    </properties>
+
+    <dependencies>
+        <!-- scala-maven-plugin determines the Scala version to use from this dependency -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Use scala-maven-plugin for Scala support -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- Need to specify this explicitly, otherwise plugin won't be called when doing e.g. mvn compile -->
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
